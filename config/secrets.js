@@ -21,13 +21,7 @@
 
 module.exports = {
 
-    db: process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test',
-
     sessionSecret: process.env.SESSION_SECRET || 'your secret',
-
-    gmail: {
-        user: 'user@gmail.com',
-        password: 'your password'
-    }
+    cookieSecret: process.env.COOKIE_SECRET || 'your secret'
 
 };

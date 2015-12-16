@@ -1,8 +1,6 @@
 var _ = require('lodash'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    OAuthStrategy = require('passport-oauth').OAuthStrategy,
-    OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
 
     secrets = require('./secrets'),
     User = require('../models/User');
@@ -27,9 +25,11 @@ passport.use(new LocalStrategy({
     User.findOne({
         email: email
     }, function(err, user) {
-        if (!user) return done(null, false, {
-            message: 'Email ' + email + ' not found'
-        });
+        if (!user) {
+            return done(null, false, {
+                message: 'Email ' + email + ' not found'
+            });
+        }
         user.comparePassword(password, function(err, isMatch) {
             if (isMatch) {
                 return done(null, user);
@@ -46,8 +46,22 @@ passport.use(new LocalStrategy({
  * Login Required middleware.
  */
 exports.isAuthenticated = function(req, res, next) {
-    if (req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) {
+        return next();
+    }
     res.redirect('/login');
+};
+
+exports.isAuthenticatedToApi = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res
+        .set('Content-Type', 'application/json')
+        .status(403)
+        .send({
+            'error': 'not authenticated'
+        });
 };
 
 /**

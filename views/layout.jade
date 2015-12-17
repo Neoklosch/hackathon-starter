@@ -5,8 +5,9 @@ html
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		meta(name='csrf-token', content=_csrf)
-		title #{title} - Hackathon Starter
+		title #{title}
 		link(rel='stylesheet', href='/css/main.css')
+		block cssscripts
 	body
 		include partials/header
 
@@ -16,6 +17,7 @@ html
 
 		include partials/footer
 
-		script(src='/js/lib/jquery.min.js')
-		script(src='/js/lib/bootstrap.min.js')
+		script(src='/bower_components/jquery/dist/jquery.min.js')
+		script(src='/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js')
 		script(src='/js/main.js')
+		block jsscripts

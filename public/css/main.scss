@@ -1,8 +1,7 @@
 @import "themes/default/variables";
 
-@import "vendors/bootstrap/bootstrap";
-@import "vendors/bootstrap-social";
-@import "vendors/font-awesome/font-awesome";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../bower_components/font-awesome/scss/font-awesome";
 
 @import "themes/default/default";
 

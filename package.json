@@ -43,6 +43,7 @@
     },
     "devDependencies": {
         "blessed": "^0.1.81",
+        "bower": "1.5.4",
         "chai": "^3.4.1",
         "mocha": "^2.3.4",
         "multiline": "^1.0.2",
